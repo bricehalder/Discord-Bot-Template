@@ -1,15 +1,16 @@
 // eslint-disable-next-line no-unused-vars
 const Discord = require('discord.js');
-const Command = require('./command');
+const {Command} = require('./command');
+const {prefix} = require('../config.json');
 
 module.exports = {
   Roll:
-    class Roll extends Command.Command {
+    class Roll extends Command {
       constructor() {
         super();
         this.name = 'roll';
         this.aliases = [this.name];
-        this.usage = '!roll [integer]';
+        this.usage = `${prefix}${this.name} [integer]`;
         this.help = 'Rolls a random number.';
         this.description = 'Rolls a random number between 1 and the number provided (default 100).';
       }

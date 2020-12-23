@@ -1,14 +1,17 @@
-const Command = require('./command');
+// eslint-disable-next-line no-unused-vars
+const Discord = require('discord.js');
+const {Command} = require('./command');
+const {prefix} = require('../config.json');
 const request = require('request');
 
 module.exports = {
   Neko:
-    class Neko extends Command.Command {
+    class Neko extends Command {
       constructor() {
         super();
         this.name = 'neko';
         this.aliases = [this.name, 'cat'];
-        this.usage = '!neko or !cat';
+        this.usage = `${prefix}${this.name}`;
         this.help = 'Sends a random image of a cat.';
         this.description = this.help;
       }

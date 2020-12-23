@@ -1,15 +1,10 @@
 const Discord = require('discord.js');
 const SQLite = require('better-sqlite3');
 const config = require('./config.json');
-const commands = require('./commands/commands').getCommands();
+const {commands} = require('./commands/commands');
 
 const client = new Discord.Client();
 const sql = new SQLite('./scores.sqlite');
-
-// eslint-disable-next-line no-unused-vars
-function debugPrint(obj) {
-  if (!config.prod) console.log(obj);
-}
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -82,6 +77,17 @@ client.on('message', (message) => {
         return;
       }
     }
+
+    if (userCommand === 'help' || userCommand === '?') {
+      helpStr = 'The available commands are:\n\n';
+      for (Command of commands) {
+        cmd = new Command();
+        helpStr += `${config.prefix}${cmd.name} - ${cmd.help}\n`;
+      }
+      message.channel.send(helpStr);
+      return;
+    }
+
     console.log(`Unrecognized command: ${userCommand}\n`);
   } catch (err) {
     console.log(err);
