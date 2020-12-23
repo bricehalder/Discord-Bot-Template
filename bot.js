@@ -4,7 +4,7 @@ const config = require('./config.json');
 const {commands} = require('./commands/commands');
 
 const client = new Discord.Client();
-const sql = new SQLite('./scores.sqlite');
+const sql = new SQLite('./db/scores.sqlite');
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
