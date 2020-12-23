@@ -12,6 +12,7 @@
     },
     "rules": {
         "max-len": ["error", { "code": 100 }],
-        "require-jsdoc": "off"
+        "require-jsdoc": "off",
+        "no-multi-str": "off"
     }
 }
